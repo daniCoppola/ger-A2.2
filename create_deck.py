@@ -56,12 +56,12 @@ def main():
     folder_path = "./"
     model = my_model
     notes_collection = {}
-
+    exclude_files = ["README.md", "template.md"]
     # Go over all md files
     for filename in os.listdir(folder_path):
         file_path = os.path.join(folder_path, filename)
         if os.path.isfile(file_path) and filename.endswith(".md") \
-                and "README" not in filename:
+                and filename not in exclude_files:
             print(f"Importing {file_path}")
             ger_to_eng = read_file(file_path)
             title = filename[:-3]
