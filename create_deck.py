@@ -30,7 +30,7 @@ def read_file(file_path):
     with open(file_path) as f:
         lines = f.readlines()
     title_pattern = r"^#+\s([a-zA-Z0-9]+)"
-    word_pattern = r"([a-zA-Z ]+)=([a-zA-Z ]+)"
+    word_pattern = r"([^=]+)=([^=]+)"
     document = {}
     for i, line in enumerate(lines):
         if re.match(title_pattern, line):
@@ -40,6 +40,7 @@ def read_file(file_path):
             if re.match(word_pattern, line):
                 ger_to_eng = re.findall(word_pattern, line)[0]
                 document[title].append(ger_to_eng)
+    print(f"{document=}")
     return document
 
 
